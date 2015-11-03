@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_color_dark_yellow_theme">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/iv_ghw_sdk_titlebar_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:contentDescription="@null"
+                android:src="@drawable/ghw_sdk_ic_logo_yellow_theme"/>
+        </LinearLayout>
+        <ImageButton
+            android:id="@+id/ibtn_ghw_sdk_titlebar_opt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="20dp"
+            android:scaleType="fitCenter"
+            android:background="@android:color/transparent"
+            android:contentDescription="@null"
+            android:src="@drawable/ghw_sdk_ic_opt_yellow_theme"/>
+    </LinearLayout>
+    <View
+        android:id="@+id/view_ghw_sdk_titlebar_divider"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/text_color_yellow_theme" />
+</LinearLayout>

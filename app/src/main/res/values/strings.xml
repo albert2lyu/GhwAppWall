@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">GhwAppWall</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="app_wall">应用墙</string>
+    <string name="information">资讯</string>
+    <string name="more">更多</string>
+</resources>

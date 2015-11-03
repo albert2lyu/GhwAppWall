@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="text_color_yellow_theme">#FFB87628</color>
+    <color name="bg_color_dark_yellow_theme">#FFE7BD5A</color>
+    <color name="bg_color_middle_yellow_theme">#FFEADDB2</color>
+    <color name="bg_color_light_yellow_theme">#FFFFFBF3</color>
+</resources>
