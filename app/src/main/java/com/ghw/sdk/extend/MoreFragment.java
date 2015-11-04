@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 /**
- * Created by Administrator on 2015/11/2.
+ * Created by yinglovezhuzhu@gmail.com on 2015/11/2.
  */
 public class MoreFragment extends BaseFragment {
 
@@ -23,10 +23,7 @@ public class MoreFragment extends BaseFragment {
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Activity activity = getActivity();
-                if (activity instanceof GhwSdkExtendActivity) {
-                    ((GhwSdkExtendActivity) activity).addFragmentToStack(new DetailFragment());
-                }
+                addFragmentToStackWithAnimation(new DetailFragment());
             }
         });
         return tv;

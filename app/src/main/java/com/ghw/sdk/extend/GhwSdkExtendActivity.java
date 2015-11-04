@@ -47,20 +47,33 @@ public class GhwSdkExtendActivity extends FragmentActivity {
 
     /**
      * 入栈
-     * @param fragment
+     * @param fragment 入栈的Fragment
      */
     void addFragmentToStack(Fragment fragment) {
         // Add the fragment to the activity, pushing this transaction
         // on to the back stack.
         FragmentTransaction ft = mFragmentManager.beginTransaction();
-        ft.replace(R.id.fl_main_container, fragment);
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        ft.replace(R.id.fl_main_container, fragment);
         ft.addToBackStack(null);
         ft.commit();
     }
 
     /**
-     * 回退
+     * 带动画的入栈，动画的模式是，Fragment从右侧推入，从左侧退出，出栈的动画是左侧推入，右侧退出。
+     * @param fragment 入栈的Fragment
+     */
+    void addFragmentToStackWithAnimation(Fragment fragment) {
+        FragmentTransaction ft = mFragmentManager.beginTransaction();
+        ft.setCustomAnimations(R.anim.anim_in_from_right, R.anim.anim_out_to_left, R.anim.anim_in_from_left, R.anim.anim_out_to_right);
+        ft.replace(R.id.fl_main_container, fragment);
+        ft.addToBackStack(null);
+        ft.commit();
+    }
+
+    /**
+     * 回退(如果入栈使用了动画，那么出栈自动回有动画)<br/>
+     * 当栈内只有一个Fragment的时候，退出Activity
      */
     void popBack() {
         if(mFragmentManager.getBackStackEntryCount() > 1) {

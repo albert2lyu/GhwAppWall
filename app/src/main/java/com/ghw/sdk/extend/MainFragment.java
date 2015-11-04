@@ -5,6 +5,8 @@ import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.ghw.sdk.extend.widget.TabItemView;
 
@@ -14,9 +16,11 @@ import com.ghw.sdk.extend.widget.TabItemView;
  */
 public class MainFragment extends BaseFragment {
 
+    private FragmentTabHost mFtTabHost;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View contentView = inflater.inflate(R.layout.fragment_main, container, false);
+        View contentView = inflater.inflate(R.layout.ghw_sdk_fragment_main, container, false);
 
         initView(contentView);
 
@@ -24,10 +28,22 @@ public class MainFragment extends BaseFragment {
     }
 
     private void initView(View contentView) {
-        FragmentTabHost tabHost = (FragmentTabHost) contentView.findViewById(R.id.fth_main_tabs);
-        tabHost.setup(getActivity(), getChildFragmentManager(), R.id.fl_main_container);
+        mFtTabHost = (FragmentTabHost) contentView.findViewById(R.id.fth_main_tabs);
+        mFtTabHost.setup(getActivity(), getChildFragmentManager(), R.id.fl_main_container);
 
-        addTabs(tabHost);
+        addTabs(mFtTabHost);
+
+        contentView.findViewById(R.id.btn_main_menu).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (View.VISIBLE == mFtTabHost.getVisibility()) {
+                    hidTabs();
+                } else {
+                    showTabs();
+                }
+            }
+        });
+
     }
 
     private void addTabs(FragmentTabHost tabHost) {
@@ -74,5 +90,31 @@ public class MainFragment extends BaseFragment {
 //        tabHost.addTab(tabHost.newTabSpec("information").setIndicator("Info"), InformationFragment.class, null);
 //
 //        tabHost.addTab(tabHost.newTabSpec("more").setIndicator("More"), MoreFragment.class, null);
+    }
+
+    private void showTabs() {
+        mFtTabHost.setVisibility(View.VISIBLE);
+        mFtTabHost.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.anim_in_from_left));
+    }
+
+    private void hidTabs() {
+        Animation anim = AnimationUtils.loadAnimation(getActivity(), R.anim.anim_out_to_left);
+        anim.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                mFtTabHost.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        mFtTabHost.startAnimation(anim);
     }
 }
