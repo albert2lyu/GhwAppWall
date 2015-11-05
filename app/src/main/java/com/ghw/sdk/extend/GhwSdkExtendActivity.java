@@ -32,7 +32,7 @@ public class GhwSdkExtendActivity extends FragmentActivity {
 //        lp.width = getResources().getDisplayMetrics().widthPixels - 200;
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
         lp.height = WindowManager.LayoutParams.MATCH_PARENT;
-        lp.windowAnimations = R.style.CustomActivityAnimation;
+//        lp.windowAnimations = R.style.ExtendActivityAnimation;
         getWindow().setAttributes(lp);
 
         // 添加默认的Fragment
@@ -88,6 +88,6 @@ public class GhwSdkExtendActivity extends FragmentActivity {
 
     void exit() {
         finish();
-        overridePendingTransition(R.anim.anim_out_to_left, R.anim.anim_out_to_left);
+        overridePendingTransition(R.anim.anim_out_to_top, R.anim.anim_out_to_top);
     }
 }
