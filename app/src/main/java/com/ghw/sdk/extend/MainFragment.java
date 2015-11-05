@@ -3,15 +3,13 @@ package com.ghw.sdk.extend;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.RadioGroup;
 
 /**
  * 主界面Fragment
@@ -24,9 +22,10 @@ public class MainFragment extends BaseFragment {
     private ImageView mIvTitleLogoWords;
     private ImageButton mIBtnTitleClose;
 
-    private PopupWindow mPopMenu;
-
     private FragmentTabHost mFtTabHost;
+
+    private PopupWindow mPopMenu;
+    private RadioGroup mRgMenu;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -66,6 +65,7 @@ public class MainFragment extends BaseFragment {
 
         initPopMenu();
 
+        mRgMenu.check(R.id.ghw_sdk_rbtn_main_menu_apps);
         mFtTabHost.setCurrentTab(0);
     }
 
@@ -76,11 +76,35 @@ public class MainFragment extends BaseFragment {
         mPopMenu = new PopupWindow(getActivity());
         mPopMenu.setBackgroundDrawable(new ColorDrawable());
         mPopMenu.setFocusable(true);
-        View popMenuView = View.inflate(getActivity(), getIdentifier("ghw_sdk_layout_extend_menu", "layout"), null);
-        mPopMenu.setContentView(popMenuView);
+        mRgMenu = (RadioGroup) View.inflate(getActivity(), getIdentifier("ghw_sdk_layout_extend_menu", "layout"), null);
+        mRgMenu.setOnCheckedChangeListener(mMenuCheckChangedListener);
+        mPopMenu.setContentView(mRgMenu);
         mPopMenu.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
         mPopMenu.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
     }
+
+    /**
+     * Menu选择监听
+     */
+    private RadioGroup.OnCheckedChangeListener mMenuCheckChangedListener = new RadioGroup.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(RadioGroup group, int checkedId) {
+            switch (checkedId) {
+                case R.id.ghw_sdk_rbtn_main_menu_apps:
+                    mFtTabHost.setCurrentTab(0);
+                    break;
+                case R.id.ghw_sdk_rbtn_main_menu_info:
+                    mFtTabHost.setCurrentTab(1);
+                    break;
+                case R.id.ghw_sdk_rbtn_main_menu_more:
+                    mFtTabHost.setCurrentTab(2);
+                    break;
+                default:
+                    break;
+            }
+            hideMenu();
+        }
+    };
 
     private void showMenu() {
         mPopMenu.showAsDropDown(mIBtnTitleLogo);

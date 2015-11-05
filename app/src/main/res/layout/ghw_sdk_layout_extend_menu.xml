@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
     <RadioButton
-        android:id="@+id/ghw_sdk_ibtn_main_menu_apps"
+        android:id="@+id/ghw_sdk_rbtn_main_menu_apps"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/ghw_sdk_text_color_red"
@@ -17,14 +17,15 @@
         android:drawableLeft="@drawable/ghw_sdk_ic_apps"
         android:drawableStart="@drawable/ghw_sdk_ic_apps"
         android:drawablePadding="10dp"
-        android:text="@string/apps"/>
+        android:text="@string/apps"
+        android:background="@drawable/ghw_sdk_selector_main_men_bg_center_white_theme"/>
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0.1dp"
         android:contentDescription="@null"
         android:background="#FF808080"/>
     <RadioButton
-        android:id="@+id/ghw_sdk_ibtn_main_menu_info"
+        android:id="@+id/ghw_sdk_rbtn_main_menu_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/ghw_sdk_text_color_red"
@@ -45,7 +46,7 @@
         android:contentDescription="@null"
         android:background="#FF808080"/>
     <RadioButton
-        android:id="@+id/ghw_sdk_ibtn_main_menu_more"
+        android:id="@+id/ghw_sdk_rbtn_main_menu_more"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/ghw_sdk_text_color_red"
@@ -58,5 +59,6 @@
         android:drawableLeft="@drawable/ghw_sdk_ic_more"
         android:drawableStart="@drawable/ghw_sdk_ic_more"
         android:drawablePadding="10dp"
-        android:text="@string/more"/>
+        android:text="@string/more"
+        android:background="@drawable/ghw_sdk_selector_main_men_bg_center_white_theme"/>
 </RadioGroup>
