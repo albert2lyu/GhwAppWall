@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--<solid android:color="@color/ghw_sdk_bg_color_light_white_theme" />-->
+
+    <gradient android:angle="270"
+        android:startColor="@color/ghw_sdk_bg_color_light_white_theme"
+        android:endColor="@color/ghw_sdk_bg_color_dark_white_theme" />
+    <corners
+        android:topLeftRadius="0dp"
+        android:topRightRadius="0dp"
+        android:bottomRightRadius="15dp"
+        android:bottomLeftRadius="15dp"  />
+</shape>

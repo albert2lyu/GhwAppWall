@@ -22,7 +22,8 @@
             android:name=".GhwSdkExtendActivity"
             android:label="@string/app_name"
             android:theme="@style/CustomActivity"
-            android:configChanges="screenSize|orientation|keyboardHidden">
+            android:configChanges="screenSize|orientation|keyboardHidden"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

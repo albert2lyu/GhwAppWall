@@ -4,8 +4,10 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="text_color_yellow_theme">#FFB87628</color>
-    <color name="bg_color_dark_yellow_theme">#FFE7BD5A</color>
-    <color name="bg_color_middle_yellow_theme">#FFEADDB2</color>
-    <color name="bg_color_light_yellow_theme">#FFFFFBF3</color>
+    <color name="ghw_sdk_text_color_white_theme">#FF131835</color>
+    <color name="ghw_sdk_text_color_red">#FFBD1F4F</color>
+    <color name="ghw_sdk_bg_color_dark_white_theme">#FFD7D5D6</color>
+    <color name="ghw_sdk_bg_color_light_white_theme">#FFEEEEEE</color>
+    <color name="ghw_sdk_border_color_white_theme">#FF3748A0</color>
+    <color name="ghw_sdk_menu_divider_color1">#FF808080</color>
 </resources>

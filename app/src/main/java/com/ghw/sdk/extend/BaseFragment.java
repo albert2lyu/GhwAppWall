@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 /**
  * Created by yinglovezhuzhu@gmail.com on 2015/10/30.
  */
-public class BaseFragment extends Fragment {
+public class BaseFragment extends Fragment implements View.OnClickListener {
 
     protected final String TAG = this.getClass().getName();
 
@@ -92,5 +92,21 @@ public class BaseFragment extends Fragment {
         if (activity instanceof GhwSdkExtendActivity) {
             ((GhwSdkExtendActivity) activity).popBack();
         }
+    }
+
+    /**
+     * 退出<br/><br/>
+     * <font color="red">注意：仅当关联Activity是{@linkplain GhwSdkExtendActivity} 才有效</font><br/>
+     */
+    protected void exit() {
+        Activity activity = getActivity();
+        if (activity instanceof GhwSdkExtendActivity) {
+            ((GhwSdkExtendActivity) activity).exit();
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

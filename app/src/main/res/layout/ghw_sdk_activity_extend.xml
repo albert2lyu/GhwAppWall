@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_color_light_yellow_theme">
+    android:background="@drawable/ghw_sdk_shape_content_bg">
     <FrameLayout
         android:id="@+id/fl_main_container"
         android:layout_width="match_parent"
