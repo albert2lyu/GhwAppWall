@@ -1,7 +1,9 @@
 package com.ghw.sdk.extend;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -59,6 +61,22 @@ public class BaseFragment extends Fragment implements View.OnClickListener {
         return getResources().getIdentifier(name, defType, getActivity().getPackageName());
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
+    protected int getResourceColor(int resId) {
+        int color = 0;
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP_MR1) {
+            color = getResources().getColor(resId);
+        } else {
+            try {
+                color = getResources().getColor(resId, null);
+            } catch (NoSuchMethodError e) {
+                color = getResources().getColor(resId);
+            }
+        }
+        return color;
+    }
+
+
     /**
      * 带动画的入栈，动画的模式是，Fragment从右侧推入，从左侧退出，出栈的动画是左侧推入，右侧退出。<br/><br/>
      * <font color="red">注意：仅当关联Activity是{@linkplain GhwSdkExtendActivity} 才有效</font>
@@ -104,7 +122,6 @@ public class BaseFragment extends Fragment implements View.OnClickListener {
             ((GhwSdkExtendActivity) activity).exit();
         }
     }
-
     @Override
     public void onClick(View v) {
 

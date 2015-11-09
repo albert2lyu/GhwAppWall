@@ -23,6 +23,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 /**
@@ -64,6 +65,7 @@ public abstract class BasePullListView extends ListView implements IPullView, Ab
     protected OnRefreshListener mRefreshListener;
     protected OnLoadMoreListener mLoadMoreListener;
     protected OnScrollListener mScrollListener;
+    protected OnItemClickListener mItemClickListener;
 
     /**
      * Constructor
@@ -235,6 +237,12 @@ public abstract class BasePullListView extends ListView implements IPullView, Ab
         this.mScrollListener = l;
     }
 
+
+    @Override
+    public void setOnItemClickListener(OnItemClickListener listener) {
+//        super.setOnItemClickListener(listener);
+        this.mItemClickListener = listener;
+    }
 
     /**
      * Can load more or not
@@ -409,5 +417,13 @@ public abstract class BasePullListView extends ListView implements IPullView, Ab
         updateFooterViewByState(-mFooterView.mViewHeight);
 
         super.setOnScrollListener(this);
+        super.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(null != mItemClickListener) {
+                    mItemClickListener.onItemClick(parent, view, position - getHeaderViewsCount(), id);
+                }
+            }
+        });
     }
 }

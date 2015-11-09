@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:state_checked="true" android:drawable="@drawable/ghw_sdk_bg_main_menu_center_selected" />
+    <item android:state_checked="true" android:drawable="@drawable/ghw_sdk_bg_main_menu_top_selected" />
 
     <item>
         <shape>

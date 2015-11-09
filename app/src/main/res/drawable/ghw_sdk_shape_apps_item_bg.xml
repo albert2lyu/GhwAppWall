@@ -5,9 +5,11 @@
     <gradient android:angle="270"
         android:startColor="@color/ghw_sdk_bg_color_light_white_theme"
         android:endColor="@color/ghw_sdk_bg_color_dark_white_theme" />
+
+    <padding android:top="8dp" android:left="8dp" android:bottom="8dp" android:right="8dp" />
     <corners
         android:topLeftRadius="0dp"
         android:topRightRadius="0dp"
-        android:bottomRightRadius="15dp"
-        android:bottomLeftRadius="15dp"  />
+        android:bottomRightRadius="10dp"
+        android:bottomLeftRadius="10dp"  />
 </shape>

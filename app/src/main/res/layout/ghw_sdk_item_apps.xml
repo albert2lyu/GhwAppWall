@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:background="@drawable/ghw_sdk_shape_apps_item_bg"
+    android:filterTouchesWhenObscured="true">
+    <com.ghw.sdk.extend.widget.round.RoundImageView
+        android:id="@+id/iv_ghw_sdk_item_apps_icon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/test_icon1"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
+        <TextView
+            android:id="@+id/tv_ghw_sdk_apps_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/ghw_sdk_text_color_white_theme"
+            android:textStyle="bold"
+            android:text="DDTank"/>
+        <TextView
+            android:id="@+id/tv_ghw_sdk_apps_item_memo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:textSize="14sp"
+            android:textColor="@color/ghw_sdk_text_color_white_theme"
+            android:text="Can find the hidden to objects to"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/btn_ghw_sdk_apps_item_install"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:background="@drawable/ghw_sdk_btn_install_normal"
+        android:contentDescription="@null"/>
+</LinearLayout>

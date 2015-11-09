@@ -2,7 +2,8 @@
 <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/ghw_sdk_bg_main_menu">
     <RadioButton
         android:id="@+id/ghw_sdk_rbtn_main_menu_apps"
         android:layout_width="match_parent"
@@ -10,7 +11,7 @@
         android:textColor="@color/ghw_sdk_text_color_red"
         android:textSize="24sp"
         android:paddingLeft="30dp"
-        android:paddingTop="8dp"
+        android:paddingTop="15dp"
         android:paddingRight="30dp"
         android:paddingBottom="8dp"
         android:button="@null"
@@ -18,12 +19,14 @@
         android:drawableStart="@drawable/ghw_sdk_ic_apps"
         android:drawablePadding="10dp"
         android:text="@string/apps"
-        android:background="@drawable/ghw_sdk_selector_main_men_bg_center_white_theme"/>
+        android:background="@drawable/ghw_sdk_selector_main_men_bg_top_white_theme" />
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="0.1dp"
+        android:layout_height="2dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
         android:contentDescription="@null"
-        android:background="#FF808080"/>
+        android:background="@drawable/ghw_sdk_main_menu_divider_white_theme"/>
     <RadioButton
         android:id="@+id/ghw_sdk_rbtn_main_menu_info"
         android:layout_width="match_parent"
@@ -42,9 +45,11 @@
         android:background="@drawable/ghw_sdk_selector_main_men_bg_center_white_theme"/>
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="0.1dp"
+        android:layout_height="2dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
         android:contentDescription="@null"
-        android:background="#FF808080"/>
+        android:background="@drawable/ghw_sdk_main_menu_divider_white_theme"/>
     <RadioButton
         android:id="@+id/ghw_sdk_rbtn_main_menu_more"
         android:layout_width="match_parent"
@@ -54,11 +59,11 @@
         android:paddingLeft="30dp"
         android:paddingTop="8dp"
         android:paddingRight="30dp"
-        android:paddingBottom="8dp"
+        android:paddingBottom="10dp"
         android:button="@null"
         android:drawableLeft="@drawable/ghw_sdk_ic_more"
         android:drawableStart="@drawable/ghw_sdk_ic_more"
         android:drawablePadding="10dp"
         android:text="@string/more"
-        android:background="@drawable/ghw_sdk_selector_main_men_bg_center_white_theme"/>
+        android:background="@drawable/ghw_sdk_selector_main_men_bg_bottom_white_theme"/>
 </RadioGroup>

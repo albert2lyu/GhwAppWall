@@ -8,6 +8,7 @@
     <color name="ghw_sdk_text_color_red">#FFBD1F4F</color>
     <color name="ghw_sdk_bg_color_dark_white_theme">#FFD7D5D6</color>
     <color name="ghw_sdk_bg_color_light_white_theme">#FFEEEEEE</color>
-    <color name="ghw_sdk_border_color_white_theme">#FF3748A0</color>
-    <color name="ghw_sdk_menu_divider_color1">#FF808080</color>
+    <color name="ghw_sdk_border_color_white_theme">#883748A0</color>
+    <color name="ghw_sdk_menu_divider_color1">#FFCCCCCC</color>
+    <color name="ghw_sdk_menu_divider_color2">#55BD1F4F</color>
 </resources>
