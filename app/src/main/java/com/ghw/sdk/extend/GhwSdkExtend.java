@@ -47,6 +47,14 @@ public class GhwSdkExtend {
         }
     }
 
+    public static void showEntryFlowIcon(Activity activity) {
+        getInstance().showEntryFlow(activity);
+    }
+
+    public static void hideEntryFlowIcon() {
+        getInstance().hideEntryFlow();
+    }
+
     void initialize(Context context) {
         if(!GhwUtil.checkPermissions(context, Arrays.asList(Manifest.permission.SYSTEM_ALERT_WINDOW))) {
             throw new IllegalStateException("Permission denied, need permission: " + Manifest.permission.SYSTEM_ALERT_WINDOW);

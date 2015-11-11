@@ -42,5 +42,13 @@
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:background="@drawable/ghw_sdk_btn_install_normal"
+        android:textSize="26sp"
+        android:textColor="#FFFFFFFF"
+        android:text="@string/install"
+        android:textStyle="bold"
+        android:shadowDx="1.1"
+        android:shadowDy="1.3"
+        android:shadowRadius="1.5"
+        android:shadowColor="#FF000000"
         android:contentDescription="@null"/>
 </LinearLayout>
