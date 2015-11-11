@@ -1,14 +1,17 @@
 package com.ghw.sdk.extend.adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ghw.sdk.extend.utils.ViewUtil;
 import com.ghw.sdk.extend.widget.round.RoundImageView;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -109,6 +112,24 @@ public class AppsAdapter extends BaseAdapter {
      */
     protected int getIdentifier(String name, String defType) {
         return mContext.getResources().getIdentifier(name, defType, mContext.getPackageName());
+    }
+
+    /**
+     * 加载图片
+     * @param url 图片地址
+     * @param imageView 图片显示控件
+     * @param width 显示宽度
+     * @param height 显示高度
+     * @param placeHolder 加载中图片
+     * @param error 加载错误图片
+     */
+    protected void loadImage(String url, ImageView imageView, int width, int height, int placeHolder, int error) {
+        Picasso.with(mContext)
+                .load(Uri.parse(url))
+                .placeholder(placeHolder)
+                .error(error)
+                .resize(width, height)
+                .into(imageView);
     }
 
     public interface OnViewClickListener {

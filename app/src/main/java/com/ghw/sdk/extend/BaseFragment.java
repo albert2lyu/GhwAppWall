@@ -3,6 +3,7 @@ package com.ghw.sdk.extend;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +12,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by yinglovezhuzhu@gmail.com on 2015/10/30.
@@ -76,6 +80,24 @@ public class BaseFragment extends Fragment implements View.OnClickListener {
         return color;
     }
 
+
+    /**
+     * 加载图片
+     * @param url 图片地址
+     * @param imageView 图片显示控件
+     * @param width 显示宽度
+     * @param height 显示高度
+     * @param placeHolder 加载中图片
+     * @param error 加载错误图片
+     */
+    protected void loadImage(String url, ImageView imageView, int width, int height, int placeHolder, int error) {
+        Picasso.with(getActivity())
+                .load(Uri.parse(url))
+                .placeholder(placeHolder)
+                .error(error)
+                .resize(width, height)
+                .into(imageView);
+    }
 
     /**
      * 带动画的入栈，动画的模式是，Fragment从右侧推入，从左侧退出，出栈的动画是左侧推入，右侧退出。<br/><br/>
