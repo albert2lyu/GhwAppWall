@@ -106,7 +106,7 @@ public class AppsFragment extends BaseFragment {
         int height = dmWidth * 3 / 5;
         switch (newConfig.orientation) {
             case Configuration.ORIENTATION_LANDSCAPE:
-                height = dmWidth / 8;
+                height = dmWidth / 6;
                 break;
             case Configuration.ORIENTATION_PORTRAIT:
                 height = dmWidth * 3 / 5;
