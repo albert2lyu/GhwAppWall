@@ -1,5 +1,6 @@
 package com.ghw.sdk.extend;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -40,9 +41,25 @@ public class GhwSdkExtendActivity extends FragmentActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        GhwSdkExtend.getInstance().setFlowVisible(false);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        GhwSdkExtend.getInstance().setFlowVisible(true);
+    }
+
+    @Override
     public void onBackPressed() {
         popBack();
-        Log.e("BBBBB", "onBackPressed------------------");
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
     }
 
     /**

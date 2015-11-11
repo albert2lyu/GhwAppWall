@@ -1,6 +1,8 @@
 package com.ghw.sdk.extend;
 
+import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
@@ -10,6 +12,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RadioGroup;
+
+import com.ghw.sdk.extend.utils.ViewUtil;
 
 /**
  * 主界面Fragment
@@ -27,6 +31,8 @@ public class MainFragment extends BaseFragment {
     private PopupWindow mPopMenu;
     private RadioGroup mRgMenu;
 
+    private int mCurrentTab = 0;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View contentView = inflater.inflate(R.layout.ghw_sdk_fragment_main, container, false);
@@ -34,6 +40,19 @@ public class MainFragment extends BaseFragment {
         initView(contentView);
 
         return contentView;
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        switch (newConfig.orientation) {
+            case Configuration.ORIENTATION_LANDSCAPE:
+                break;
+            case Configuration.ORIENTATION_PORTRAIT:
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
@@ -65,8 +84,20 @@ public class MainFragment extends BaseFragment {
 
         initPopMenu();
 
-        mRgMenu.check(R.id.ghw_sdk_rbtn_main_menu_apps);
-        mFtTabHost.setCurrentTab(0);
+        mFtTabHost.setCurrentTab(mCurrentTab);
+        switch (mCurrentTab) {
+            case 0:
+                mRgMenu.check(getIdentifier("ghw_sdk_rbtn_main_menu_apps", ViewUtil.DEF_RES_ID));
+                break;
+            case 1:
+                mRgMenu.check(getIdentifier("ghw_sdk_rbtn_main_menu_info", ViewUtil.DEF_RES_ID));
+                break;
+            case 2:
+                mRgMenu.check(getIdentifier("ghw_sdk_rbtn_main_menu_more", ViewUtil.DEF_RES_ID));
+                break;
+            default:
+                break;
+        }
     }
 
     /**
@@ -89,19 +120,14 @@ public class MainFragment extends BaseFragment {
     private RadioGroup.OnCheckedChangeListener mMenuCheckChangedListener = new RadioGroup.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
-            switch (checkedId) {
-                case R.id.ghw_sdk_rbtn_main_menu_apps:
-                    mFtTabHost.setCurrentTab(0);
-                    break;
-                case R.id.ghw_sdk_rbtn_main_menu_info:
-                    mFtTabHost.setCurrentTab(1);
-                    break;
-                case R.id.ghw_sdk_rbtn_main_menu_more:
-                    mFtTabHost.setCurrentTab(2);
-                    break;
-                default:
-                    break;
+            if(checkedId == getIdentifier("ghw_sdk_rbtn_main_menu_apps", ViewUtil.DEF_RES_ID)) {
+                mCurrentTab = 0;
+            } else if(checkedId == getIdentifier("ghw_sdk_rbtn_main_menu_info", ViewUtil.DEF_RES_ID)) {
+                mCurrentTab = 1;
+            } else if(checkedId == getIdentifier("ghw_sdk_rbtn_main_menu_more", ViewUtil.DEF_RES_ID)) {
+                mCurrentTab = 2;
             }
+            mFtTabHost.setCurrentTab(mCurrentTab);
             hideMenu();
         }
     };

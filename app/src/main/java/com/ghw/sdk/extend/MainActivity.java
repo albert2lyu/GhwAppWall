@@ -27,6 +27,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, GhwSdkExtendActivity.class));
             }
         });
+
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        GhwSdkExtend.getInstance().showEntryFlow(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        GhwSdkExtend.getInstance().hideEntryFlow();
     }
 
     @Override

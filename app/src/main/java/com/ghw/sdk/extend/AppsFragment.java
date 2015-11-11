@@ -1,5 +1,6 @@
 package com.ghw.sdk.extend;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -7,17 +8,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.ghw.sdk.extend.adapter.AppsAdapter;
 import com.ghw.sdk.extend.adapter.BannerAdapter;
 import com.ghw.sdk.extend.utils.ViewUtil;
 import com.ghw.sdk.extend.widget.pullview.OnLoadMoreListener;
 import com.ghw.sdk.extend.widget.pullview.OnRefreshListener;
 import com.ghw.sdk.extend.widget.pullview.PullListView;
-import com.ghw.sdk.extend.widget.round.RoundImageView;
 
-import java.util.logging.Handler;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 应用墙界面
@@ -26,29 +27,47 @@ import java.util.logging.Handler;
 public class AppsFragment extends BaseFragment {
 
     private PullListView mLvApps;
+    private AppsAdapter mAppsAdapter;
 
     private ViewPager mVpBanner;
     private BannerAdapter mBannerAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View contentView = inflater.inflate(R.layout.ghw_sdk_fragment_apps, container, false);
+        int layoutId = getIdentifier("ghw_sdk_fragment_apps", ViewUtil.DEF_RES_LAYOUT);
+        View contentView = inflater.inflate(layoutId, container, false);
         initView(contentView);
         return contentView;
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        updateViewByConfiguration(newConfig);
+    }
+
     private void initView(View contentView) {
-        mLvApps = (PullListView) contentView.findViewById(R.id.lv_ghw_sdk_apps);
+        int lvAppsId = getIdentifier("lv_ghw_sdk_apps", ViewUtil.DEF_RES_ID);
+        mLvApps = (PullListView) contentView.findViewById(lvAppsId);
 
         initHeaderView();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.ghw_sdk_item_apps, R.id.tv_ghw_sdk_apps_item_title);
-        mLvApps.setAdapter(adapter);
 
+        mAppsAdapter = new AppsAdapter(getActivity());
+        mLvApps.setAdapter(mAppsAdapter);
+
+        mAppsAdapter.setOnViewClickListener(new AppsAdapter.OnViewClickListener() {
+            @Override
+            public void onInstallClicked(View view, int position) {
+                Toast.makeText(getActivity(), "Install clicked--->>>" + position, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        List<String> data = new ArrayList<>();
         for(int i = 0; i < 20; i++) {
-            adapter.add("Item--> " + i);
+            data.add("Item--> " + i);
         }
-        adapter.notifyDataSetChanged();
+        mAppsAdapter.addAll(data, true);
 
         mLvApps.setOnRefreshListener(new OnRefreshListener() {
             @Override
@@ -81,6 +100,29 @@ public class AppsFragment extends BaseFragment {
         });
     }
 
+    private void updateViewByConfiguration(Configuration newConfig) {
+        int dmWidth = getResources().getDisplayMetrics().widthPixels;
+        ViewGroup.LayoutParams lp = mVpBanner.getLayoutParams();
+        int height = dmWidth * 3 / 5;
+        switch (newConfig.orientation) {
+            case Configuration.ORIENTATION_LANDSCAPE:
+                height = dmWidth / 6;
+                break;
+            case Configuration.ORIENTATION_PORTRAIT:
+                height = dmWidth * 3 / 5;
+                break;
+            default:
+                break;
+        }
+        if(null == lp) {
+            lp = new ViewGroup.LayoutParams(WindowManager.LayoutParams.MATCH_PARENT, height);
+        } else {
+            lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+            lp.height = height;
+        }
+        mVpBanner.setLayoutParams(lp);
+    }
+
     /**
      * 头部视图
      */
@@ -91,16 +133,17 @@ public class AppsFragment extends BaseFragment {
         int bannerId = getIdentifier("vp_ghw_sdk_apps_header_banner", ViewUtil.DEF_RES_ID);
         mVpBanner = (ViewPager) headerView.findViewById(bannerId);
 
-        int dmWidth = getResources().getDisplayMetrics().widthPixels;
-        ViewGroup.LayoutParams lp = mVpBanner.getLayoutParams();
-        int height = dmWidth * 3 / 5;
-        if(null == lp) {
-            lp = new ViewGroup.LayoutParams(WindowManager.LayoutParams.MATCH_PARENT, height);
-        } else {
-            lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-            lp.height = height;
-        }
-        mVpBanner.setLayoutParams(lp);
+        updateViewByConfiguration(getResources().getConfiguration());
+//        int dmWidth = getResources().getDisplayMetrics().widthPixels;
+//        ViewGroup.LayoutParams lp = mVpBanner.getLayoutParams();
+//        int height = dmWidth * 3 / 5;
+//        if(null == lp) {
+//            lp = new ViewGroup.LayoutParams(WindowManager.LayoutParams.MATCH_PARENT, height);
+//        } else {
+//            lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+//            lp.height = height;
+//        }
+//        mVpBanner.setLayoutParams(lp);
         mBannerAdapter = new BannerAdapter(getChildFragmentManager());
         mVpBanner.setAdapter(mBannerAdapter);
 
