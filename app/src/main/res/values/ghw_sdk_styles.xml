@@ -9,7 +9,7 @@
     </style>
 
     <style name="ExtendActivityAnimation">
-        <item name="android:windowEnterAnimation">@anim/anim_in_from_top</item>
-        <item name="android:windowExitAnimation">@anim/anim_out_to_top</item>
+        <item name="android:windowEnterAnimation">@anim/ghw_sdk_anim_in_from_top</item>
+        <item name="android:windowExitAnimation">@anim/ghw_sdk_anim_out_to_top</item>
     </style>
 </resources>

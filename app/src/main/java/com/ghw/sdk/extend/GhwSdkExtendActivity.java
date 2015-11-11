@@ -38,10 +38,10 @@ public class GhwSdkExtendActivity extends FragmentActivity {
 
         mContainerId = getIdentifier("fl_main_container", ViewUtil.DEF_RES_ID);
 
-        mInFromLeftAnim = getIdentifier("anim_in_from_left", ViewUtil.DEF_RES_ANIM);
-        mInFromRightAnim = getIdentifier("anim_in_from_right", ViewUtil.DEF_RES_ANIM);
-        mOutToLeftAnim = getIdentifier("anim_out_to_left", ViewUtil.DEF_RES_ANIM);
-        mOutToRightAnim = getIdentifier("anim_out_to_right", ViewUtil.DEF_RES_ANIM);
+        mInFromLeftAnim = getIdentifier("ghw_sdk_anim_in_from_left", ViewUtil.DEF_RES_ANIM);
+        mInFromRightAnim = getIdentifier("ghw_sdk_anim_in_from_right", ViewUtil.DEF_RES_ANIM);
+        mOutToLeftAnim = getIdentifier("ghw_sdk_anim_out_to_left", ViewUtil.DEF_RES_ANIM);
+        mOutToRightAnim = getIdentifier("ghw_sdk_anim_out_to_right", ViewUtil.DEF_RES_ANIM);
 
         WindowManager.LayoutParams lp = getWindow().getAttributes();
 //        lp.width = getResources().getDisplayMetrics().widthPixels - 200;
@@ -120,7 +120,7 @@ public class GhwSdkExtendActivity extends FragmentActivity {
 
     void exit() {
         finish();
-        int outToTopAnimId = getIdentifier("anim_out_to_top", ViewUtil.DEF_RES_ANIM);
+        int outToTopAnimId = getIdentifier("ghw_sdk_anim_out_to_top", ViewUtil.DEF_RES_ANIM);
         overridePendingTransition(outToTopAnimId, outToTopAnimId);
     }
 
