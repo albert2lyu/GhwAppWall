@@ -6,9 +6,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.WindowManager;
+
+import com.ghw.sdk.extend.utils.ViewUtil;
 
 /**
  * Created by yinglovezhuzhu@gmail.com on 2015/10/30.
@@ -16,6 +17,13 @@ import android.view.WindowManager;
 public class GhwSdkExtendActivity extends FragmentActivity {
 
     private FragmentManager mFragmentManager;
+
+    private int mContainerId = 0;
+
+    private int mInFromLeftAnim = 0;
+    private int mInFromRightAnim = 0;
+    private int mOutToLeftAnim = 0;
+    private int mOutToRightAnim = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +33,15 @@ public class GhwSdkExtendActivity extends FragmentActivity {
 
         getWindow().setGravity(Gravity.LEFT);
 
-        setContentView(R.layout.ghw_sdk_activity_extend);
+        int layoutId = getIdentifier("ghw_sdk_activity_extend", ViewUtil.DEF_RES_LAYOUT);
+        setContentView(layoutId);
+
+        mContainerId = getIdentifier("fl_main_container", ViewUtil.DEF_RES_ID);
+
+        mInFromLeftAnim = getIdentifier("anim_in_from_left", ViewUtil.DEF_RES_ANIM);
+        mInFromRightAnim = getIdentifier("anim_in_from_right", ViewUtil.DEF_RES_ANIM);
+        mOutToLeftAnim = getIdentifier("anim_out_to_left", ViewUtil.DEF_RES_ANIM);
+        mOutToRightAnim = getIdentifier("anim_out_to_right", ViewUtil.DEF_RES_ANIM);
 
         WindowManager.LayoutParams lp = getWindow().getAttributes();
 //        lp.width = getResources().getDisplayMetrics().widthPixels - 200;
@@ -33,7 +49,6 @@ public class GhwSdkExtendActivity extends FragmentActivity {
 //        lp.width = getResources().getDisplayMetrics().widthPixels - 200;
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
         lp.height = WindowManager.LayoutParams.MATCH_PARENT;
-//        lp.windowAnimations = R.style.ExtendActivityAnimation;
         getWindow().setAttributes(lp);
 
         // 添加默认的Fragment
@@ -71,7 +86,7 @@ public class GhwSdkExtendActivity extends FragmentActivity {
         // on to the back stack.
         FragmentTransaction ft = mFragmentManager.beginTransaction();
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-        ft.replace(R.id.fl_main_container, fragment);
+        ft.replace(mContainerId, fragment);
         ft.addToBackStack(null);
         ft.commit();
     }
@@ -82,8 +97,8 @@ public class GhwSdkExtendActivity extends FragmentActivity {
      */
     void addFragmentToStackWithAnimation(Fragment fragment) {
         FragmentTransaction ft = mFragmentManager.beginTransaction();
-        ft.setCustomAnimations(R.anim.anim_in_from_right, R.anim.anim_out_to_left, R.anim.anim_in_from_left, R.anim.anim_out_to_right);
-        ft.replace(R.id.fl_main_container, fragment);
+        ft.setCustomAnimations(mInFromRightAnim, mOutToLeftAnim, mInFromLeftAnim, mOutToRightAnim);
+        ft.replace(mContainerId, fragment);
         ft.addToBackStack(null);
         ft.commit();
     }
@@ -105,6 +120,17 @@ public class GhwSdkExtendActivity extends FragmentActivity {
 
     void exit() {
         finish();
-        overridePendingTransition(R.anim.anim_out_to_top, R.anim.anim_out_to_top);
+        int outToTopAnimId = getIdentifier("anim_out_to_top", ViewUtil.DEF_RES_ANIM);
+        overridePendingTransition(outToTopAnimId, outToTopAnimId);
+    }
+
+    /**
+     * 获取资源id，如果没有找到，返回0
+     * @param name
+     * @param defType
+     * @return
+     */
+    protected int getIdentifier(String name, String defType) {
+        return getResources().getIdentifier(name, defType, getPackageName());
     }
 }

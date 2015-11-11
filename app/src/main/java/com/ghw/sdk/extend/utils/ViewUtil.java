@@ -38,7 +38,8 @@ public class ViewUtil {
 	public static final String DEF_RES_DRAWABLE = "drawable";
     /** 定义资源名称类型：color **/
 	public static final String DEF_RES_COLOR = "color";
-//	public static final String DEF_RES_LAYOUT = "layout";
+	/** 定义资源名称类型：anim **/
+	public static final String DEF_RES_ANIM = "anim";
 
 	private ViewUtil() {}
 	

@@ -106,7 +106,7 @@ public class AppsFragment extends BaseFragment {
         int height = dmWidth * 3 / 5;
         switch (newConfig.orientation) {
             case Configuration.ORIENTATION_LANDSCAPE:
-                height = dmWidth / 6;
+                height = dmWidth / 8;
                 break;
             case Configuration.ORIENTATION_PORTRAIT:
                 height = dmWidth * 3 / 5;
@@ -134,21 +134,10 @@ public class AppsFragment extends BaseFragment {
         mVpBanner = (ViewPager) headerView.findViewById(bannerId);
 
         updateViewByConfiguration(getResources().getConfiguration());
-//        int dmWidth = getResources().getDisplayMetrics().widthPixels;
-//        ViewGroup.LayoutParams lp = mVpBanner.getLayoutParams();
-//        int height = dmWidth * 3 / 5;
-//        if(null == lp) {
-//            lp = new ViewGroup.LayoutParams(WindowManager.LayoutParams.MATCH_PARENT, height);
-//        } else {
-//            lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-//            lp.height = height;
-//        }
-//        mVpBanner.setLayoutParams(lp);
         mBannerAdapter = new BannerAdapter(getChildFragmentManager());
         mVpBanner.setAdapter(mBannerAdapter);
 
         mLvApps.addHeaderView(headerView, null, false);
-//        mLvApps.addHeaderView(headerView);
     }
 
     private android.os.Handler mHandler = new android.os.Handler();
