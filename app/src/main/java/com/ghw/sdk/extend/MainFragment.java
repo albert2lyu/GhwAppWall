@@ -2,7 +2,6 @@ package com.ghw.sdk.extend;
 
 import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
@@ -35,7 +34,8 @@ public class MainFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View contentView = inflater.inflate(R.layout.ghw_sdk_fragment_main, container, false);
+        int layoutId = getIdentifier("ghw_sdk_fragment_main", ViewUtil.DEF_RES_LAYOUT);
+        View contentView = inflater.inflate(layoutId, container, false);
 
         initView(contentView);
 
@@ -57,25 +57,27 @@ public class MainFragment extends BaseFragment {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.ghw_sdk_ibtn_title_logo:
-                showMenu();
-                break;
-            case R.id.ghw_sdk_ibtn_title_close:
-                exit();
-                break;
-            default:
-                break;
+        int id = v.getId();
+        if(id == getIdentifier("ghw_sdk_ibtn_title_logo", ViewUtil.DEF_RES_ID)) {
+            showMenu();
+        } else if(id == getIdentifier("ghw_sdk_ibtn_title_close", ViewUtil.DEF_RES_ID)) {
+            exit();
         }
     }
 
     private void initView(View contentView) {
-        mIBtnTitleLogo = (ImageButton) contentView.findViewById(R.id.ghw_sdk_ibtn_title_logo);
-        mIvTitleDivider = (ImageView) contentView.findViewById(R.id.ghw_sdk_iv_title_divider);
-        mIvTitleLogoWords = (ImageView) contentView.findViewById(R.id.ghw_sdk_iv_title_logo_word);
-        mIBtnTitleClose = (ImageButton) contentView.findViewById(R.id.ghw_sdk_ibtn_title_close);
-        mFtTabHost = (FragmentTabHost) contentView.findViewById(R.id.ghw_sdk_fth_main_tabs);
-        mFtTabHost.setup(getActivity(), getChildFragmentManager(), R.id.ghw_sdk_fl_main_container);
+        int logoId = getIdentifier("ghw_sdk_ibtn_title_logo", ViewUtil.DEF_RES_ID);
+        mIBtnTitleLogo = (ImageButton) contentView.findViewById(logoId);
+        int dividerId = getIdentifier("ghw_sdk_iv_title_divider", ViewUtil.DEF_RES_ID);
+        mIvTitleDivider = (ImageView) contentView.findViewById(dividerId);
+        int logoWordsId = getIdentifier("ghw_sdk_iv_title_logo_word", ViewUtil.DEF_RES_ID);
+        mIvTitleLogoWords = (ImageView) contentView.findViewById(logoWordsId);
+        int closeId = getIdentifier("ghw_sdk_ibtn_title_close", ViewUtil.DEF_RES_ID);
+        mIBtnTitleClose = (ImageButton) contentView.findViewById(closeId);
+        int tabHostId = getIdentifier("ghw_sdk_fth_main_tabs", ViewUtil.DEF_RES_ID);
+        mFtTabHost = (FragmentTabHost) contentView.findViewById(tabHostId);
+        int containerId = getIdentifier("ghw_sdk_fl_main_container", ViewUtil.DEF_RES_ID);
+        mFtTabHost.setup(getActivity(), getChildFragmentManager(), containerId);
 
         mIBtnTitleLogo.setOnClickListener(this);
         mIBtnTitleClose.setOnClickListener(this);
