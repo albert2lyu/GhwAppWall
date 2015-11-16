@@ -2,13 +2,13 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/ghw_sdk_shape_content_bg">
+    android:layout_height="match_parent">
     <!-- 这是主容器 -->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/ghw_sdk_shape_content_bg">
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -77,5 +77,33 @@
             </TabWidget>
         </android.support.v4.app.FragmentTabHost>
     </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_main_guard_container"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#AA000000">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ghw_sdk_ic_logo"
+            android:contentDescription="@null"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginStart="3dp"
+            android:maxWidth="0dp"
+            android:maxHeight="0dp"
+            android:background="@drawable/ghw_sdk_bg_guard_menu_tip"
+            android:contentDescription="@null"
+            android:gravity="center"
+            android:textColor="#FFFFFFFF"
+            android:textSize="35sp"
+            android:text="Click here to popup menu"/>
+    </FrameLayout>
 
 </FrameLayout>

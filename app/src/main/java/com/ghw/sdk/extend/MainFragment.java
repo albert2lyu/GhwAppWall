@@ -5,6 +5,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -24,6 +25,8 @@ public class MainFragment extends BaseFragment {
     private ImageView mIvTitleDivider;
     private ImageView mIvTitleLogoWords;
     private ImageButton mIBtnTitleClose;
+
+    private View mGuardContainer;
 
     private FragmentTabHost mFtTabHost;
 
@@ -66,6 +69,20 @@ public class MainFragment extends BaseFragment {
     }
 
     private void initView(View contentView) {
+        int guardContainerId = getIdentifier("fl_main_guard_container", ViewUtil.DEF_RES_ID);
+        mGuardContainer = contentView.findViewById(guardContainerId);
+
+        mGuardContainer.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                boolean block = mGuardContainer.getVisibility() == View.VISIBLE;
+                if (MotionEvent.ACTION_UP == event.getAction()) {
+                    mGuardContainer.setVisibility(View.GONE);
+                }
+                return block;
+            }
+        });
+
         int logoId = getIdentifier("ghw_sdk_ibtn_title_logo", ViewUtil.DEF_RES_ID);
         mIBtnTitleLogo = (ImageButton) contentView.findViewById(logoId);
         int dividerId = getIdentifier("ghw_sdk_iv_title_divider", ViewUtil.DEF_RES_ID);

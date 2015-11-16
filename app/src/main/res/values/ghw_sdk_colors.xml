@@ -8,4 +8,5 @@
     <color name="ghw_sdk_menu_divider_color1">#FFCCCCCC</color>
     <color name="ghw_sdk_menu_divider_color2">#55BD1F4F</color>
     <color name="ghw_sdk_apps_item_opt_text_color">#FFF6F5B3</color>
+    <color name="ghw_sdk_guard_bg_color">#AA000000</color>
 </resources>
